@@ -260,11 +260,22 @@ class RolloutCtrl(AgentCtrlInterface, ObserverInterface):
         Returns:
             ModelState: start state
         '''
+
+                
         _, closest_object_pose = self._get_closest_obj(start_dist)
+
+
+        # Get closest waypoint from start pose.
+        _, next_wp_idx = self._track_data_.center_line_.find_prev_next_waypoints(start_ndist, normalized=False, reverse_dir=self._reverse_dir_)
+        
+        target_x, target_y = self._reward_.compute_respawn_target(next_wp_idx, self._reverse_dir_)
+        target_position = Point([target_x, target_y])
+
         # Compute the start pose
         start_pose = self._track_data_._center_line_.interpolate_pose(start_dist,
                                                                       reverse_dir=self._reverse_dir_,
-                                                                      finite_difference=FiniteDifference.FORWARD_DIFFERENCE)
+                                                                      finite_difference=FiniteDifference.FORWARD_DIFFERENCE, position=target_position)
+
         # Check to place in inner or outer lane
         if closest_object_pose is not None:
             object_point = Point([closest_object_pose.position.x, closest_object_pose.position.y])

@@ -56,11 +56,12 @@ class TrackLine(object):
         return yaw
 
     def interpolate_pose(self, distance, normalized=False, reverse_dir=False,
-                         finite_difference=FiniteDifference.CENTRAL_DIFFERENCE):
+                         finite_difference=FiniteDifference.CENTRAL_DIFFERENCE, position=None):
         pose = Pose()
-        position = self.interpolate(distance, normalized)
+        if position is None:
+            position = self.interpolate(distance, normalized)
         yaw = self.interpolate_yaw(distance, normalized, reverse_dir, position, finite_difference)
-        orientation = euler_to_quaternion(yaw=yaw)
+        orientation = euler_to_quaternion(yaw=yaw)      
         pose.position.x = position.x
         pose.position.y = position.y
         pose.position.z = 0.0
