@@ -64,9 +64,9 @@ def get_front_camera_embedders(network_type):
                           {SchemeInfo.CONV_INFO_LIST.value: [[32, 5, 2], [32, 3, 1],
                                                              [64, 3, 2], [64, 3, 1]],
                            SchemeInfo.DENSE_LAYER_INFO_LIST.value: [64],
-                           SchemeInfo.BN_INFO_CONV.value: [False, ActivationFunctions.TANH.value,
+                           SchemeInfo.BN_INFO_CONV.value: [False, ActivationFunctions.RELU.value,
                                                            0.0],
-                           SchemeInfo.BN_INFO_DENSE.value: [False, ActivationFunctions.TANH.value,
+                           SchemeInfo.BN_INFO_DENSE.value: [False, ActivationFunctions.RELU.value,
                                                             0.0],
                            SchemeInfo.IS_FIRST_LAYER_BN.value: False}}
     elif network_type == NeuralNetwork.DEEP_CONVOLUTIONAL_NETWORK_DEEP.value:
@@ -115,9 +115,9 @@ def get_left_camera_embedders(network_type):
                           {SchemeInfo.CONV_INFO_LIST.value: [[32, 5, 2], [32, 3, 1], [64, 3, 2],
                                                              [64, 3, 1]],
                            SchemeInfo.DENSE_LAYER_INFO_LIST.value: [64],
-                           SchemeInfo.BN_INFO_CONV.value: [False, ActivationFunctions.TANH.value,
+                           SchemeInfo.BN_INFO_CONV.value: [False, ActivationFunctions.RELU.value,
                                                            0.0],
-                           SchemeInfo.BN_INFO_DENSE.value: [False, ActivationFunctions.TANH.value,
+                           SchemeInfo.BN_INFO_DENSE.value: [False, ActivationFunctions.RELU.value,
                                                             0.3],
                            SchemeInfo.IS_FIRST_LAYER_BN.value: False}}
     elif network_type == NeuralNetwork.DEEP_CONVOLUTIONAL_NETWORK_DEEP.value:
